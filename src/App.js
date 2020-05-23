@@ -1,11 +1,11 @@
 import React from 'react';
-import PolynominalCalculator from "./components/PolynominalCalculator"
-import './App.css';
+import PolynomialCalculator from "./components/PolynomialCalculator"
+import './App.scss';
 
 function App() {
   return (
     <div className="App">
-      <PolynominalCalculator />
+      <PolynomialCalculator />
     </div>
   );
 }
