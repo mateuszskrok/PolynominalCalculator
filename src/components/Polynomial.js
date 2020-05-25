@@ -3,7 +3,6 @@ export function Polynomial({ polynomial }) {
     let position = 0;
     return polynomial.map((pair) => {
         position += 1;
-        console.log(position)
         return (pair[1] !== 0 &&
             <>  
                 {(position > 1) && "+"}

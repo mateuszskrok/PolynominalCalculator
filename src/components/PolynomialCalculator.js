@@ -17,7 +17,6 @@ class PolynomialCalculator extends React.Component{
 
     handleReturnSum = () => {
         this.setState(prevState => {
-            console.log(prevState)
             return{sum: AddPolynomials(prevState.polynomialA, prevState.polynomialB)}
         })
     }
@@ -30,7 +29,7 @@ class PolynomialCalculator extends React.Component{
             <p> B = <Polynomial polynomial={polynomialB}/></p>
             <button onClick={this.handleReturnSum}> Sum! </button>
             {sum &&
-            <p> A + B = <Result polynomial={this.state.sum}/></p>}
+            <p> A + B = <Result polynomial={sum}/></p>}
             </>
         )
     }
