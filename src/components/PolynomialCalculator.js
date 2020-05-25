@@ -1,32 +1,96 @@
 import React from "react";
 import { AddPolynomials } from "./AddPolynomials";
-import { Polynomial } from "./Polynomial";
+import Polynomial from "./Polynomial";
 import { Result } from "./Result";
 
 class PolynomialCalculator extends React.Component{
 
     state = {
-       polynomialA : [
-            [0,-2]
+       polynomials : [[
+            [3,-2],
+            [1,4],
+            [2,2]
         ],
-        polynomialB : [
-            [0,2]
-         ],
+        [
+            [0,2],
+            [1,3],
+            [2,6]
+         ]],
         sum : []
+    }
+
+     handleCoefficientChange = (pIndex, value, index) => {
+        this.setState((prevState) =>{
+            const updatedPolynomial = prevState.polynomials[pIndex].map((item, j) => {
+                if (j===index){
+                    return [item[0],value];
+                }
+                else {
+                    return item;
+                }
+            }  
+            )
+            const newPolynomials = prevState.polynomials.map((polynomial,index) => {
+                return (pIndex === index) ? updatedPolynomial : polynomial
+            })
+            return {polynomials: newPolynomials}
+        })
+    }
+    
+    handleExponentChange = (pIndex, value, index) => {
+        this.setState((prevState) =>{
+            const updatedPolynomial = prevState.polynomials[pIndex].map((item, j) => {
+                if (j===index){
+                    return [value,item[1]];
+                }
+                else {
+                    return item;
+                }
+            }  
+            )
+            const newPolynomials = prevState.polynomials.map((polynomial,index) => {
+                return (pIndex === index) ? updatedPolynomial : polynomial
+            })
+            return {polynomials: newPolynomials}
+        })
+    }
+
+    handleAddTerm = (pIndex) => {
+        this.setState((prevState) => {
+            const updatedPolynomial = [...prevState.polynomials[pIndex], ...[[1,1]]]
+            debugger
+            const newPolynomials = prevState.polynomials.map((polynomial,index) => {
+                return (pIndex === index) ? updatedPolynomial : polynomial
+            })
+            return {polynomials: newPolynomials}
+        })
     }
 
     handleReturnSum = () => {
         this.setState(prevState => {
-            return{sum: AddPolynomials(prevState.polynomialA, prevState.polynomialB)}
+            return{sum: AddPolynomials(prevState.polynomials[0], prevState.polynomials[1])}
         })
     }
+
     render(){
-        const {polynomialA, polynomialB, sum} = this.state;
+        const {polynomials, sum} = this.state;
     
         return(
             <>
-            <p> A = <Polynomial polynomial={polynomialA}/></p>
-            <p> B = <Polynomial polynomial={polynomialB}/></p>
+            <Polynomial 
+                polynomial={polynomials[0]} 
+                pIndex={0} 
+                onCoefficientChange={this.handleCoefficientChange} 
+                onExponentChange={this.handleExponentChange}
+                onAddTerm={this.handleAddTerm}
+            />
+            <Polynomial 
+                polynomial={polynomials[1]} 
+                pIndex={1} 
+                onCoefficientChange={this.handleCoefficientChange} 
+                onExponentChange={this.handleExponentChange}
+                onAddTerm={this.handleAddTerm}
+                />
             <button onClick={this.handleReturnSum}> Sum! </button>
             {sum &&
             <p> A + B = <Result polynomial={sum}/></p>}
