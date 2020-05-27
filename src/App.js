@@ -1,6 +1,6 @@
 import React from 'react';
 import PolynomialCalculator from "./components/PolynomialCalculator"
-import './App.scss';
+import './App.css';
 
 function App() {
   return (
