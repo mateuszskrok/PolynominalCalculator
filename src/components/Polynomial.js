@@ -28,7 +28,7 @@ function Polynomial({polynomial, onCoefficientChange, onExponentChange, onAddTer
                     </sup>
                 </>);
              })}
-            <button onClick={() => onAddTerm(pIndex)}>+</button>
+            <button title="Add a term" onClick={() => onAddTerm(pIndex)}>+</button>
         </p>
     )
     }

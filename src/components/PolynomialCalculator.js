@@ -7,14 +7,14 @@ class PolynomialCalculator extends React.Component{
 
     state = {
        polynomials : [[
-            [3,-2],
-            [1,4],
-            [2,2]
+            [2,1],
+            [1,1],
+            [0,1]
         ],
         [
-            [0,2],
-            [1,3],
-            [2,6]
+            [2,1],
+            [1,1],
+            [0,1]
          ]],
         sum : []
     }
