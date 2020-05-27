@@ -8,7 +8,7 @@ function Polynomial({polynomial, onCoefficientChange, onExponentChange, onAddTer
         {pIndex ? "B = " : "A = "} 
         {polynomial.map((pair,index) => {
             position += 1;
-            return (pair[1] !== 0 &&
+            return (
                 <>  
                     {(position > 1) && "+"}
                     <input 
